@@ -1,0 +1,2681 @@
+<!doctype html>
+<html lang="tg">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Магозаи мо — махсулотхо бо сифати баланд ва нархи дастрас." />
+    <title>Магозаи мо — Лендинг</title>
+
+    <style>
+      /* =========================================================
+         Mobile-first, minimal, fast. Color theme: black/red/white
+         ========================================================= */
+
+      :root {
+        /* Blue + silver palette */
+        --bg: #050816;
+        --surface: #0b1220;
+        --surface-2: #111827;
+        --text: #ffffff;
+        --muted: rgba(255, 255, 255, 0.72);
+        --muted-2: rgba(255, 255, 255, 0.56);
+        /* Reused as accents */
+        --red: #22c55e;  /* primary accent: green for CTA */
+        --red-2: #16a34a;
+        --border: rgba(255, 255, 255, 0.10);
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --container: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue",
+          "Apple Color Emoji", "Segoe UI Emoji";
+        /* Deep blue to silver gradient for a clean, sporty feel */
+        background:
+          radial-gradient(1200px 700px at 10% -20%, rgba(59, 130, 246, 0.35), transparent 60%),
+          radial-gradient(900px 600px at 110% 10%, rgba(148, 163, 184, 0.35), transparent 55%),
+          linear-gradient(180deg, #020617 0%, #020617 30%, #0b1120 65%, #020617 100%);
+        color: var(--text);
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Safe area for iPhone notch */
+      .page {
+        padding: 14px 14px calc(18px + env(safe-area-inset-bottom));
+      }
+
+      .container {
+        max-width: var(--container);
+        margin: 0 auto;
+      }
+
+      /* =================
+         Header / Hero / Nav
+         ================= */
+      body.nav-open {
+        overflow: hidden;
+      }
+
+      header {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        /* subtle blue-silver highlight on header */
+        background: linear-gradient(180deg, rgba(148, 163, 184, 0.15), transparent 55%), var(--surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 16px 16px 14px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 12px 22px rgba(37, 99, 235, 0.35);
+        flex: 0 0 auto;
+      }
+
+      .logo svg {
+        width: 22px;
+        height: 22px;
+        opacity: 0.95;
+      }
+
+      .brand-title {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .brand-title h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+
+      .brand-title p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* Burger */
+      .burger {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .burger:active {
+        transform: scale(0.97);
+      }
+
+      .burger span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 999px;
+        position: relative;
+        transition: transform 180ms ease, background 160ms ease;
+      }
+
+      .burger span::before,
+      .burger span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 999px;
+        transition: transform 180ms ease, opacity 160ms ease;
+      }
+
+      .burger span::before {
+        top: -6px;
+      }
+
+      .burger span::after {
+        top: 6px;
+      }
+
+      .burger.is-open span {
+        background: transparent;
+      }
+
+      .burger.is-open span::before {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .burger.is-open span::after {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* Admin button (hidden/almost invisible) */
+      .admin-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        transition: all 150ms ease;
+        -webkit-tap-highlight-color: transparent;
+        opacity: 0.2;
+      }
+
+      .admin-btn:hover {
+        opacity: 0.4;
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .admin-btn:active {
+        transform: scale(0.95);
+      }
+
+      .hero-cta {
+        margin-top: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        font-size: 12px;
+        width: fit-content;
+      }
+
+      .pill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 99px;
+        background: #38bdf8;
+        box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.35);
+      }
+
+      .primary-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .btn {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 14px;
+        padding: 14px 14px;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px; /* tap target */
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid rgba(34, 197, 94, 0.7);
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(180deg, var(--red), var(--red-2));
+        color: #fff;
+        box-shadow: 0 14px 26px rgba(34, 197, 94, 0.32);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        color: #fff;
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* =================
+         Products section
+         ================= */
+      main {
+        margin-top: 14px;
+      }
+
+      .section {
+        margin-top: 14px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%), var(--surface);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .section-head {
+        padding: 14px 16px 10px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .section-head .hint {
+        font-size: 12px;
+        color: var(--muted-2);
+        text-align: right;
+      }
+
+      .products {
+        padding: 0 12px 14px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 55%), var(--surface-2);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .card-media {
+        min-height: 200px;
+        max-height: 400px;
+        background: #0e0e14;
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 160ms ease;
+      }
+
+      .card-media:hover {
+        opacity: 0.9;
+      }
+
+      .card-media img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .card-body {
+        padding: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .card-title {
+        display: grid;
+        gap: 4px;
+      }
+
+      .card-title h3 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: 0.2px;
+      }
+
+      .card-title p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .price {
+        font-weight: 800;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .price small {
+        font-size: 12px;
+        color: var(--muted-2);
+        font-weight: 600;
+      }
+
+      .order-btn {
+        width: 100%;
+      }
+
+      /* Sticky mobile CTA */
+      .sticky {
+        position: sticky;
+        bottom: 10px;
+        margin-top: 14px;
+        z-index: 20;
+      }
+
+      .sticky-inner {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: rgba(18, 18, 26, 0.72);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+        padding: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .sticky-text {
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 16px;
+        padding: 14px 10px 4px;
+        text-align: center;
+        color: var(--muted-2);
+        font-size: 12px;
+      }
+
+      /* =================
+         Responsive (>= 640)
+         ================= */
+      @media (min-width: 640px) {
+        .page {
+          padding: 18px 18px 24px;
+        }
+
+        .hero {
+          padding: 22px 22px 18px;
+        }
+
+        .brand-title h1 {
+          font-size: 22px;
+        }
+
+        .brand-title p {
+          font-size: 14px;
+        }
+
+        .primary-actions {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .products {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          padding: 0 16px 16px;
+        }
+      }
+
+      /* =================
+         Responsive (>= 960)
+         ================= */
+      @media (min-width: 960px) {
+        .products {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+
+      /* =================
+         Navigation Drawer
+         ================= */
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease;
+        z-index: 80;
+      }
+
+      .nav-overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(78vw, 320px);
+        max-width: 360px;
+        background: rgba(18, 18, 26, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-left: 1px solid var(--border);
+        box-shadow: -18px 0 38px rgba(0, 0, 0, 0.35);
+        transform: translateX(100%);
+        transition: transform 200ms ease;
+        z-index: 90;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .nav-drawer.open {
+        transform: translateX(0);
+      }
+
+      .nav-head {
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-head .title {
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      .nav-close {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 10px 0;
+        display: grid;
+        gap: 4px;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        color: #fff;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        background: transparent;
+        transition: background 150ms ease, border 150ms ease, transform 150ms ease;
+      }
+
+      .nav-link:active {
+        transform: translateY(1px);
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border);
+      }
+
+      .nav-footer {
+        padding: 14px 16px 18px;
+        border-top: 1px solid var(--border);
+        display: grid;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--muted-2);
+      }
+
+      /* =================
+         Product Modal
+         ================= */
+      .product-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        opacity: 0;
+        transition: opacity 200ms ease;
+      }
+
+      .product-modal-overlay.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .product-modal {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        max-width: 1200px;
+        width: 100%;
+        max-height: 90vh;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        transform: scale(0.95);
+        transition: transform 200ms ease;
+      }
+
+      .product-modal-overlay.show .product-modal {
+        transform: scale(1);
+      }
+
+      .product-modal-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        overflow-y: auto;
+        max-height: 90vh;
+      }
+
+      .product-modal-image-wrapper {
+        width: 100%;
+        min-height: 300px;
+        max-height: 60vh;
+        background: #0e0e14;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .product-modal-image-wrapper img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        object-fit: contain;
+        display: block;
+      }
+
+      .product-modal-info {
+        padding: 20px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .product-modal-title {
+        display: grid;
+        gap: 8px;
+      }
+
+      .product-modal-title h2 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: 0.2px;
+      }
+
+      .product-modal-title p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .product-modal-price {
+        font-weight: 800;
+        font-size: 24px;
+        letter-spacing: 0.2px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .product-modal-price small {
+        font-size: 16px;
+        color: var(--muted-2);
+        font-weight: 600;
+      }
+
+      .product-modal-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(18, 18, 26, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+        z-index: 10;
+        transition: background 150ms ease, transform 150ms ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .product-modal-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .product-modal-close:active {
+        transform: scale(0.95);
+      }
+
+      .product-modal-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      @media (min-width: 768px) {
+        .product-modal-content {
+          grid-template-columns: 1fr 1fr;
+          max-height: 90vh;
+        }
+
+        .product-modal-image-wrapper {
+          max-height: 90vh;
+          min-height: 500px;
+        }
+
+        .product-modal-image-wrapper img {
+          max-height: 90vh;
+        }
+
+        .product-modal-info {
+          padding: 32px;
+          overflow-y: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .product-modal-overlay,
+        .product-modal,
+        .product-modal-close {
+          transition: none !important;
+        }
+      }
+
+      /* =================
+         Admin Panel Styles
+         ================= */
+      .admin-password-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        opacity: 0;
+        transition: opacity 200ms ease;
+      }
+
+      .admin-password-modal.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .admin-password-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        display: grid;
+        gap: 16px;
+      }
+
+      .admin-password-box h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .admin-password-box input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-size: 15px;
+        font-family: inherit;
+      }
+
+      .admin-password-box input:focus {
+        outline: none;
+        border-color: rgba(34, 197, 94, 0.5);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .admin-password-error {
+        color: var(--red);
+        font-size: 13px;
+        display: none;
+      }
+
+      .admin-password-error.show {
+        display: block;
+      }
+
+      .admin-section {
+        display: none;
+        margin-top: 14px;
+      }
+
+      .admin-section.show {
+        display: block;
+      }
+
+      .admin-form {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%), var(--surface);
+        box-shadow: var(--shadow);
+        padding: 20px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .admin-form h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .admin-form-group {
+        display: grid;
+        gap: 8px;
+      }
+
+      .admin-form-group label {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .admin-form-group input,
+      .admin-form-group textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-size: 15px;
+        font-family: inherit;
+        resize: vertical;
+      }
+
+      .admin-form-group input:focus,
+      .admin-form-group textarea:focus {
+        outline: none;
+        border-color: rgba(34, 197, 94, 0.5);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .admin-form-group textarea {
+        min-height: 100px;
+      }
+
+      .admin-image-preview {
+        width: 100%;
+        max-height: 300px;
+        border-radius: 12px;
+        object-fit: contain;
+        background: #0e0e14;
+        border: 1px solid var(--border);
+        display: none;
+      }
+
+      .admin-image-preview.show {
+        display: block;
+      }
+
+      .admin-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      /* Admin controls on product cards */
+      .product-admin-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .admin-edit-btn,
+      .admin-delete-btn {
+        font-size: 13px;
+        padding: 10px 12px;
+        min-height: 40px;
+      }
+
+      .admin-delete-btn {
+        background: rgba(255, 42, 42, 0.15);
+        border-color: rgba(255, 42, 42, 0.3);
+        color: #ff6b6b;
+      }
+
+      .admin-delete-btn:hover {
+        background: rgba(255, 42, 42, 0.25);
+        border-color: rgba(255, 42, 42, 0.5);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .admin-password-modal {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="container">
+        <header>
+          <div class="hero">
+            <div class="topbar">
+              <div class="brand" aria-label="Магозаи мо">
+                <div class="logo">
+                  <!-- Brand logo image -->
+                  <img src="logo.jpeg" alt="Логотип Магозаи мо" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" />
+                </div>
+
+                <div class="brand-title">
+                  <h1>Магозаи мо</h1>
+                  <p>Махсулотхо бо сифати баланд ва нархи дастрас</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <!-- Hidden admin button (almost invisible) -->
+                <button class="admin-btn" id="adminBtn" aria-label="Админ" title="Админ панел">⚙</button>
+                <button class="burger" id="burgerToggle" aria-label="Кушодани меню">
+                  <span></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-cta">
+              <div class="pill" role="note" aria-label="Маълумот">
+                <span class="pill-dot" aria-hidden="true"></span>
+                <span>Фармоиш дар 1 клик — WhatsApp</span>
+              </div>
+
+              <div class="primary-actions">
+                <a class="btn btn-primary" href="#products" data-nav-target="products" aria-label="Ба махсулотхо гузаштан">
+                  <!-- Arrow icon -->
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 5v14M6.5 13.5 12 19l5.5-5.5"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Дидани махсулотхо
+                </a>
+
+                <button class="btn btn-secondary" type="button" id="callToWhatsApp">
+                  <!-- WhatsApp-like bubble icon (generic) -->
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M20 11.5c0 4.14-3.58 7.5-8 7.5-1.36 0-2.64-.31-3.76-.86L4 20l1.06-3.61C4.4 15.2 4 13.9 4 11.5 4 7.36 7.58 4 12 4s8 3.36 8 7.5Z"
+                      stroke="white"
+                      stroke-width="1.8"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9.2 10.2c.5 2 2.1 3.6 4.1 4.1l.8-.8c.3-.3.7-.4 1.1-.3l1.2.3c.5.12.8.58.75 1.09-.1.9-.9 1.6-1.8 1.6-3.6 0-6.5-2.9-6.5-6.5 0-.9.7-1.7 1.6-1.8.51-.05.97.25 1.09.75l.3 1.2c.1.4 0 .8-.3 1.1l-.8.8Z"
+                      fill="white"
+                      opacity="0.9"
+                    />
+                  </svg>
+                  Пурсидан дар WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Navigation Drawer -->
+        <div class="nav-overlay" id="navOverlay"></div>
+        <nav class="nav-drawer" id="mobileNav" aria-label="Асосии меню">
+          <div class="nav-head">
+            <div class="title">Меню</div>
+            <button class="nav-close" type="button" id="navClose" aria-label="Пӯшидани меню">✕</button>
+          </div>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="#products" data-nav-target="products">Махсулотхо</a></li>
+            <li><a class="nav-link" href="#stats" data-nav-target="stats">Омори мо</a></li>
+            <li><a class="nav-link" href="#about" data-nav-target="about">Дар бораи мо</a></li>
+            <li><a class="nav-link" href="#how" data-nav-target="how">Чи гуна фармоиш додан</a></li>
+            <li><a class="nav-link" href="#testimonials" data-nav-target="testimonials">Озоди мизоҷон</a></li>
+            <li><a class="nav-link" href="#clients" data-nav-target="clients">Кафолатҳо</a></li>
+            <li><a class="nav-link" href="#faq" data-nav-target="faq">Саволҳо</a></li>
+            <li><a class="nav-link" href="#contacts" data-nav-target="contacts">Тамос</a></li>
+          </ul>
+          <div class="nav-footer">
+            <div>Фармоиш ва дастгирӣ — WhatsApp</div>
+            <div>Кор мекунем: 09:00 – 22:00</div>
+            </div>
+          </nav>
+
+        <main>
+          <!-- Admin Section (hidden by default) -->
+          <section class="section admin-section" id="adminSection" aria-label="Панели админ">
+            <div class="section-head">
+              <h2>Панели админ — Илова кардани махсулот</h2>
+              <div class="hint">Махсулоти нав ба таври худкор илова мешаванд</div>
+            </div>
+            <div class="admin-form" id="adminForm">
+              <h2>Илова кардани махсулоти нав</h2>
+              
+              <div class="admin-form-group">
+                <label for="adminImage">Фотои махсулот <span style="color: var(--muted-2); font-weight: normal; font-size: 12px;">(ихтиёрӣ барои тағйир додан)</span></label>
+                <input type="file" id="adminImage" accept="image/*" />
+                <img class="admin-image-preview" id="adminImagePreview" alt="Пешнамоиш" />
+              </div>
+
+              <div class="admin-form-group">
+                <label for="adminTitle">Номи махсулот</label>
+                <input type="text" id="adminTitle" placeholder="Мисол: Футболкаи варзишӣ" required />
+              </div>
+
+              <div class="admin-form-group">
+                <label for="adminDescription">Тавсифи махсулот</label>
+                <textarea id="adminDescription" placeholder="Маводди мулоим, ранги тоза. Барои варзиш ва ҳаррӯз — қулай ва зебо..." required></textarea>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="adminPrice">Нарх (сомонӣ)</label>
+                <input type="number" id="adminPrice" placeholder="149" min="1" required />
+              </div>
+
+              <div class="admin-actions">
+                <button class="btn btn-secondary" type="button" id="adminCancelBtn">Бекор кардан</button>
+                <button class="btn btn-primary" type="button" id="adminAddBtn">Илова кардан</button>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+                  <strong>Маълумот:</strong> Барои тағйир додани махсулот, дар карточкаи махсулот тугмаи "Тағйир додан"-ро пахш кунед. Барои тағйир додани танҳо тавсиф ё нарх, зарурати интихоби фотои нав нест. Ҳамаи тағйирот ба таври худкор захира карда мешаванд ва пас аз бозкушонии саҳифа нигоҳ дошта мешаванд.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="products" aria-label="Махсулотхо">
+            <div class="section-head">
+              <h2>Махсулотхо</h2>
+              <div class="hint">Тугмаи «Заказать» — барои фармоиш</div>
+            </div>
+
+            <div class="products" id="productsGrid">
+              <!-- Card 1: Шорты спортивные -->
+              <article class="card" data-title="Шортҳои варзишӣ" data-price="189 сомонӣ" data-message="Салом! Ман мехоҳам ин шортҳоро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/04A3C6C2-7869-4C73-B319-88CF5B01989B_4_5005_c.jpeg" alt="Шортҳои варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Комплект 4в1</h3>
+                    <p>Маводди эластик ва нафасгир, барои варзиш ва машқҳои ҳаррӯза. Дизайни замонавӣ, мувофиқ барои ҳама намудҳои варзиш. Сифати баланд, нархи дастрас – беҳтарин интихоби шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      249 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 2: Футболка спортивная -->
+              <article class="card" data-title="Футболкаи варзишӣ" data-price="149 сомонӣ" data-message="Салом! Ман мехоҳам ин футболкаро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/1522277D-5675-400C-B2CA-5A0CE28D0B85.jpeg" alt="Футболкаи варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойка Хлопок</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      169 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 3: Кроссовки -->
+              <article class="card" data-title="Кроссовки варзишӣ" data-price="399 сомонӣ" data-message="Салом! Ман мехоҳам ин кроссовкиро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/15A0F31B-F736-421F-8DBB-FB55EFB4C6FB_1_201_a.jpeg" alt="Кроссовки варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойка Палма</h3>
+                    <p>Барои дамгирӣ ва истироҳати рӯзмарра. Материал бароҳат ва нафасгир, дизайни замонавӣ ва ранги зебо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 4: Спортивный костюм -->
+              <article class="card" data-title="Костюми варзишӣ" data-price="329 сомонӣ" data-message="Салом! Ман мехоҳам ин костюми варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/1ED8461C-C55D-4703-8C7E-4E5B768A7F82_4_5005_c.jpeg" alt="Костюми варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Красовки бароҳат</h3>
+                    <p>Комплект бароҳат — барои варзиш ва ҳаррӯз. Дизайни замонавӣ, сифати баланд. Беҳтарин нарх дар бозор!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      129 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 5: Спортивные штаны -->
+              <article class="card" data-title="Шимҳои варзишӣ" data-price="219 сомонӣ" data-message="Салом! Ман мехоҳам ин шимҳоро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/29B83C04-5C0B-46A7-8837-5C886B7EAD04_1_201_a.jpeg" alt="Шимҳои варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойка Палма</h3>
+                    <p>Материал бароҳат ва нафасгир, дизайни замонавӣ ва ранги зебо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 6: Спортивная куртка -->
+              <article class="card" data-title="Куртаи варзишӣ" data-price="279 сомонӣ" data-message="Салом! Ман мехоҳам ин куртаи варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/3E9EF4F6-535D-4CA6-B76F-6DF8E9B1BF44_1_201_a.jpeg" alt="Куртаи варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>23 Jordan</h3>
+                    <p>Дизайни замонавӣ, сифати баланд. Барои варзиш ва ҳаррӯз — беҳтарин интихоб! Сифати баланд, нархи дастрас.</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 7: Спортивная майка -->
+              <article class="card" data-title="Майкаи варзишӣ" data-price="129 сомонӣ" data-message="Салом! Ман мехоҳам ин майкаро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/43CBB21A-9FE6-485E-9245-DCCFBE39D79B_1_201_a.jpeg" alt="Майкаи варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойкаи варзишӣ</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      199 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 8: Спортивные шорты (другой вариант) -->
+              <article class="card" data-title="Шортҳои варзишӣ (классикӣ)" data-price="169 сомонӣ" data-message="Салом! Ман мехоҳам ин шортҳои классикиро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/4915193B-4E40-4424-96E1-8AC84B92FBD3.jpeg" alt="Шортҳои варзишӣ (классикӣ)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Майкаи варзишӣ</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      99 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 9: Спортивная футболка (другой вариант) -->
+              <article class="card" data-title="Футболкаи варзишӣ (классикӣ)" data-price="139 сомонӣ" data-message="Салом! Ман мехоҳам ин футболкаи классикиро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/4BCA6CC1-F746-433E-A80A-82180BB0CDE6_1_201_a.jpeg" alt="Футболкаи варзишӣ (классикӣ)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Майкаи варзишӣ</h3>
+                    <p>Дизайни замонавӣ, маводди мулоим. Барои варзиш ва ҳаррӯз — беҳтарин интихоб! Сифати баланд, нархи дастрас.</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      99 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 10: Спортивный топ -->
+              <article class="card" data-title="Майкаи варзишӣ" data-price="119 сомонӣ" data-message="Салом! Ман мехоҳам ин топи варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/50A44529-A8A6-4154-9CC1-47CCEDFFBA91_1_201_a.jpeg" alt="Топи варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Майкаи варзишӣ</h3>
+                    <p>Барои варзиш ва ҳаррӯз — қулай ва зебо. Маводди нафасгир, сифати баланд. Не упусти шанс!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      99 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 11: Спортивные леггинсы -->
+              <article class="card" data-title="Леггинсҳои варзишӣ" data-price="199 сомонӣ" data-message="Салом! Ман мехоҳам ин леггинсҳоро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/53170C75-04FD-429C-BFBB-C880ACC58CD4_1_201_a.jpeg" alt="Леггинсҳои варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>23 Jordan</h3>
+                    <p>Маводди нафасгир, дизайни замонавӣ. Барои варзиш ва ҳаррӯз — беҳтарин интихоб! Сифати баланд, тез расонида мешавад.</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 12: Спортивная толстовка -->
+              <article class="card" data-title="Толстовкаи варзишӣ" data-price="249 сомонӣ" data-message="Салом! Ман мехоҳам ин толстовкаро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/5A1C719A-5882-4B78-897C-71997D4E5AE9.jpeg" alt="Толстовкаи варзишӣ" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Майкаи варзишӣ</h3>
+                    <p>Барои варзиш ва ҳаррӯз — дизайни замонавӣ ва сифати баланд. Не упусти шанс — нархи махсус имрӯз!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      99 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 13: Спортивная футболка (вариант 2) -->
+              <article class="card" data-title="Футболкаи варзишӣ (вариант 2)" data-price="159 сомонӣ" data-message="Салом! Ман мехоҳам ин футболкаи дуюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/75FA8A65-9286-4FE4-8D5E-BDD318045BC7_4_5005_c.jpeg" alt="Футболкаи варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Сумки варзишӣ</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 14: Спортивные штаны (вариант 2) -->
+              <article class="card" data-title="Шимҳои варзишӣ (вариант 2)" data-price="229 сомонӣ" data-message="Салом! Ман мехоҳам ин шимҳои дуюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/7742D754-50BD-4370-A315-1B7D631783C4.jpeg" alt="Шимҳои варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойкаи DIOR</h3>
+                    <p>Маводди нафасгир, дизайни замонавӣ. Барои варзиш ва ҳаррӯз — беҳтарин интихоб! Сифати баланд, нархи дастрас.</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 15: Спортивная майка (вариант 2) -->
+              <article class="card" data-title="Майкаи варзишӣ (вариант 2)" data-price="139 сомонӣ" data-message="Салом! Ман мехоҳам ин майкаи дуюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/85EE85FA-64B7-4A2B-9168-B6241B77F80E.jpeg" alt="Майкаи варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойкаи варзишӣ (вариант 2)</h3>
+                    <p>Маводди мулоим, нафасгир. Барои варзиш ва ҳаррӯз — қулай ва зебо. Сифати баланд, тез расонида мешавад!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      169 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 16: Спортивный костюм (вариант 2) -->
+              <article class="card" data-title="Костюми варзишӣ (вариант 2)" data-price="349 сомонӣ" data-message="Салом! Ман мехоҳам ин костюми дуюми варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/9734BE79-0210-441D-829D-D5030F2359D4_4_5005_c.jpeg" alt="Костюми варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Костюми варзишӣ (вариант 2)</h3>
+                    <p>Комплекти пурра — барои варзиш ва ҳаррӯз. Дизайни замонавӣ, сифати баланд. Беҳтарин нарх дар бозор!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      179 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 17: Спортивная куртка (вариант 2) -->
+              <article class="card" data-title="Куртаи варзишӣ (вариант 2)" data-price="289 сомонӣ" data-message="Салом! Ман мехоҳам ин куртаи дуюми варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/AA64361C-17C0-4998-841F-C2E1F2F882C9_4_5005_c.jpeg" alt="Куртаи варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Сумкаи варзишӣ (вариант 2)</h3>
+                    <p>Барои варзиш ва ҳаррӯз — дизайни замонавӣ ва сифати баланд. Не упусти шанс — нархи махсус имрӯз!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 18: Спортивные шорты (вариант 3) -->
+              <article class="card" data-title="Шортҳои варзишӣ (вариант 3)" data-price="179 сомонӣ" data-message="Салом! Ман мехоҳам ин шортҳои сеюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/C0AEBA02-CD5E-46FA-B5E5-BF5D450358A2_4_5005_c.jpeg" alt="Шортҳои варзишӣ (вариант 3)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Сумки варзишӣ (вариант 3)</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 19: Спортивная футболка (вариант 3) -->
+              <article class="card" data-title="Футболкаи варзишӣ (вариант 3)" data-price="169 сомонӣ" data-message="Салом! Ман мехоҳам ин футболкаи сеюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/CA1B1EA3-07F3-4464-9518-232AA836BFC1_1_201_a.jpeg" alt="Футболкаи варзишӣ (вариант 3)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>23 Jordan (вариант 3)</h3>
+                    <p>Материал табиӣ ва нафасгир, барои бароҳатии ҳаррӯза ва машқҳои сабук. Дизайни осон ва замонавӣ, омодагӣ барои ҳама рӯзҳо. Сифати баланд, нархи дастрас – интихоби беҳтарини шумо!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      149 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 20: Спортивная толстовка (вариант 2) -->
+              <article class="card" data-title="Толстовкаи варзишӣ (вариант 2)" data-price="259 сомонӣ" data-message="Салом! Ман мехоҳам ин толстовкаи дуюмро фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/CEBBA6AF-A680-4B3A-92B4-FAF88CC69454_4_5005_c.jpeg" alt="Толстовкаи варзишӣ (вариант 2)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Двойкаи варзишӣ (вариант 2)</h3>
+                    <p>Барои варзиш ва ҳаррӯз — дизайни замонавӣ ва сифати баланд. Не упусти шанс — нархи махсус имрӯз!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      179 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+
+              <!-- Card 21: Спортивный костюм (вариант 3) -->
+              <article class="card" data-title="Костюми варзишӣ (вариант 3)" data-price="369 сомонӣ" data-message="Салом! Ман мехоҳам ин костюми сеюми варзиширо фармоиш диҳам.">
+                <div class="card-media">
+                  <img src="products/FF17C5FF-D550-4EC6-B815-8F47FC672E2E_4_5005_c.jpeg" alt="Костюми варзишӣ (вариант 3)" loading="lazy" />
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Костюми варзишӣ (вариант 3)</h3>
+                    <p>Комплекти пурра — барои варзиш ва ҳаррӯз. Дизайни замонавӣ, сифати баланд. Беҳтарин нарх дар бозор!</p>
+                  </div>
+                  <div class="card-meta">
+                    <div class="price">
+                      179 <small>сомонӣ</small>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary order-btn" type="button">Заказать</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Stats Section -->
+          <section class="section" id="stats" aria-label="Омори мо">
+            <div class="section-head">
+              <h2>Омори мо</h2>
+              <div class="hint">Мо ба шумо эътимод дорем</div>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Махсулоти гуногун</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" data-target="1200">0</div>
+                <div class="stat-label">Мизоҷони хушнуд</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label">% Рейтинги мизоҷон</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🚚</div>
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">Соат дар як рӯз</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- About -->
+          <section class="section" id="about" aria-label="Дар бораи мо">
+            <div class="section-head">
+              <h2>Дар бораи мо</h2>
+              <div class="hint">Магозаи варзишии онлайн</div>
+            </div>
+            <div class="products" style="grid-template-columns: 1fr;">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>«Магозаи мо» — интернет-магазини либоси варзишӣ</h3>
+                    <p style="font-size: 15px; line-height: 1.6;">Мо ба шумо махсулоти босифати варзишӣ пешниҳод мекунем. Дар бозори Тоҷикистон мо ягона магозае ҳастем, ки махсулоти варзиширо бо нархҳои дастрас ва сифати баланд таъмин мекунем. Мо бо мизоҷони худ боэътимодона кор мекунем ва ҳамаи фармоишҳоро ба суръат ва боэътимод расонида мерасонем.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Benefits Grid -->
+            <div class="benefits-grid">
+              <div class="benefit-card">
+                <div class="benefit-icon">✓</div>
+                <h4>Сифати баланд</h4>
+                <p>Махсулоти аслӣ аз истеҳсолкунандагони машҳур</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h4>Нархҳои дастрас</h4>
+                <p>Беҳтарин нархҳо дар бозор бо кафолати сифат</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h4>Расониши тез</h4>
+                <p>Дар шаҳр — дар як рӯз, дар минтақаҳо — 2-3 рӯз</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h4>Баргардонидан</h4>
+                <p>Агар махсулот писанд наояд, шумо метавонед онро баргардонед</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">💳</div>
+                <h4>Пардохти бехатар</h4>
+                <p>Пардохт танҳо пас аз гирифтани махсулот</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">📞</div>
+                <h4>Дастгирии 24/7</h4>
+                <p>Мо ҳамеша барои кӯмак омодаем</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- How to order -->
+          <section class="section" id="how" aria-label="Чи гуна фармоиш додан">
+            <div class="section-head">
+              <h2>Чи гуна фармоиш додан</h2>
+              <div class="hint">5 қадам + доставка</div>
+            </div>
+            <div class="products" style="grid-template-columns: 1fr; gap: 10px;">
+              <div class="card">
+                <div class="card-body" style="gap: 12px;">
+                  <div class="card-title">
+                    <h3>Раванди фармоиш</h3>
+                  </div>
+                  <ol style="margin: 0; padding-left: 18px; color: var(--muted); font-size: 13.5px; display: grid; gap: 6px;">
+                    <li>Интихоби махсулот</li>
+                    <li>Зер кардани тугмаи «Заказать»</li>
+                    <li>Кушодани WhatsApp</li>
+                    <li>Тасдики фармоиш</li>
+                    <li>Расонидани махсулот</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body" style="gap: 10px;">
+                  <div class="card-title">
+                    <h3>Доставка</h3>
+                    <p>Суръат ва шаффофият: паём, тасдиқ, фиристодан.</p>
+                  </div>
+                  <div class="card-meta" style="flex-direction: column; align-items: flex-start; gap: 8px; width: 100%;">
+                    <div class="pill"><span class="pill-dot"></span><span>Дар шаҳр — зуд</span></div>
+                    <div class="pill"><span class="pill-dot"></span><span>Минтақаҳо — тавассути такси</span></div>
+                    <div class="pill"><span class="pill-dot"></span><span>Мӯҳлат: мувофиқи масофа</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Clients -->
+          <section class="section" id="clients" aria-label="Мизочони мо">
+            <div class="section-head">
+              <h2>Мизочони мо</h2>
+              <div class="hint">Доставка, баргардонидан, пардохт</div>
+            </div>
+            <div class="products" style="grid-template-columns: 1fr; gap: 10px;">
+              <div class="card">
+                <div class="card-body" style="gap: 12px;">
+                  <div class="card-title">
+                    <h3>Мо расонидани фармоиши шуморо ба суръат ва боэътимод таъмин мекунем.</h3>
+                  </div>
+                  <ul style="margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; font-size: 13.5px;">
+                    <li>Фармоишро қабул кунед, ба он баҳои худро диҳед.</li>
+                    <li>Агар ягон маҳсулот ба шумо писанд наояд, шумо метавонед онро баргардонед.</li>
+                    <li>Пардохт танҳо ҳангоми гирифтани маҳсулот сурат мегирад.</li>
+                    <li>Нархи доставка: 10–20 сомонӣ.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body" style="gap: 12px;">
+                  <div class="card-title">
+                    <h3>Мо ба ҳамаи минтақаҳои Тоҷикистон расонидани маҳсулот дорем.</h3>
+                  </div>
+                  <ul style="margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; font-size: 13.5px;">
+                    <li>Бо шумо тавассути такси тамос мегирем ва фармоишро мефиристем.</li>
+                    <li>Пеш аз пардохт, такси бо шумо тамос мегирад ва шумо фармоишро месанҷед.</li>
+                    <li>Пардохт танҳо пас аз гирифтани маҳсулот сурат мегирад.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Testimonials -->
+          
+
+          <!-- FAQ -->
+          <section class="section" id="faq" aria-label="Саволҳои зиёд такроршаванда">
+            <div class="section-head">
+              <h2>Саволҳои зиёд такроршаванда</h2>
+              <div class="hint">Ҷавобҳо ба саволҳои шумо</div>
+            </div>
+            <style>
+              .faq-chat-list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                margin-top: 18px;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              .chat-bubble {
+                display: inline-block;
+                padding: 12px 18px;
+                border-radius: 20px 20px 20px 6px;
+                background: #f1f5f9;
+                color: #222;
+                font-size: 15px;
+                margin-bottom: 4px;
+                max-width: 90%;
+                box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+              }
+              .chat-bubble.question {
+                align-self: flex-end;
+                background: #38bdf8;
+                color: #fff;
+                border-radius: 20px 20px 6px 20px;
+                text-align: right;
+              }
+              .chat-bubble.answer {
+                align-self: flex-start;
+                background: #f1f5f9;
+                color: #222;
+                border-radius: 20px 20px 20px 6px;
+                text-align: left;
+              }
+              @media (max-width: 600px) {
+                .faq-chat-list { max-width: 100%; }
+              }
+            </style>
+            <div class="faq-chat-list">
+              <div class="chat-bubble question">Чӣ тавр ман метавонам фармоиш диҳам?</div>
+              <div class="chat-bubble answer">Барои фармоиш додан, махсулоти дилхоҳро интихоб кунед ва тугмаи «Заказать»-ро пахш кунед. Паём ба таври худкор дар WhatsApp кушода мешавад ва шумо метавонед фармоишро тасдиқ кунед.</div>
+
+              <div class="chat-bubble question">Мӯҳлати расониш чанд рӯз аст?</div>
+              <div class="chat-bubble answer">Дар шаҳри Душанбе — дар як рӯз. Дар дигар шаҳрҳо ва минтақаҳо — 2-3 рӯз. Мо бо шумо тамос мегирем ва мӯҳлати дақиқро муайян мекунем.</div>
+
+              <div class="chat-bubble question">Чӣ тавр ман пардохт мекунам?</div>
+              <div class="chat-bubble answer">Пардохт танҳо пас аз гирифтани махсулот сурат мегирад. Пеш аз пардохт, шумо метавонед махсулотро месанҷед ва агар писанд наояд, баргардонед.</div>
+
+              <div class="chat-bubble question">Ман метавонам махсулотро баргардонед?</div>
+              <div class="chat-bubble answer">Бале, агар махсулот ба шумо писанд наояд ё сифаташ ба шумо писанд наояд, шумо метавонед онро баргардонед. Мо пули шуморо бармегардонем.</div>
+
+              <div class="chat-bubble question">Нархи доставка чанд аст?</div>
+              <div class="chat-bubble answer">Нархи доставка аз 10 то 20 сомонӣ аст, ки ба масофа вобаста аст. Дар шаҳр нархҳо камтар, дар минтақаҳо — каме зиёдтар.</div>
+              
+              <div class="chat-bubble question">Шумо дар кадом вақт кор мекунед?</div>
+              <div class="chat-bubble answer">Мо ҳар рӯз аз соати 09:00 то 22:00 кор мекунем. Шумо метавонед дар ин вақт бо мо тавассути WhatsApp ё телефон тамос гиред.</div>
+            </div>
+
+          <!-- Contacts -->
+          <section class="section" id="contacts" aria-label="Тамос">
+            <div class="section-head">
+              <h2>Тамос</h2>
+              <div class="hint">Мо ҳамеша барои кӯмак омодаем</div>
+            </div>
+            <div class="products" style="grid-template-columns: 1fr; gap: 10px;">
+              <div class="card">
+                <div class="card-body" style="gap: 16px;">
+                  <div class="card-title">
+                    <h3>📱 WhatsApp + Телефон</h3>
+                    <p style="font-size: 14px; line-height: 1.6;">Кор мекунем: 09:00 – 22:00, ҳар рӯз<br />Душанбе / Тоҷикистон</p>
+                  </div>
+                  <div class="card-meta" style="flex-direction: column; align-items: flex-start; gap: 12px; width: 100%;">
+                    <button class="btn btn-primary order-btn" type="button" id="contactWhatsApp" style="width: 100%;">
+                      <svg viewBox="0 0 24 24" fill="none" style="width: 18px; height: 18px;">
+                        <path d="M20 11.5c0 4.14-3.58 7.5-8 7.5-1.36 0-2.64-.31-3.76-.86L4 20l1.06-3.61C4.4 15.2 4 13.9 4 11.5 4 7.36 7.58 4 12 4s8 3.36 8 7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                      </svg>
+                      Навиштан дар WhatsApp
+                    </button>
+                    <a class="btn btn-secondary" style="width: 100%; justify-content: center;" href="tel:+992800064064">
+                      <svg viewBox="0 0 24 24" fill="none" style="width: 18px; height: 18px;">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Занг: +992 800064064
+                    </a>
+                  </div>
+                  <div style="margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--border);">
+                    <div style="display: grid; gap: 8px; font-size: 13px; color: var(--muted);">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span>⏰</span>
+                        <span>Кор мекунем: 09:00 – 22:00 (ҳар рӯз)</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span>📍</span>
+                        <span>Душанбе, Тоҷикистон</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span>🌍</span>
+                        <span>Доставка дар тамоми Тоҷикистон</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Sticky CTA (mobile-friendly) -->
+          <div class="sticky" aria-label="Тез фармоиш додан">
+            <div class="sticky-inner">
+              <div class="sticky-text">
+                <span><strong>Омодаед?</strong> Дар WhatsApp нависед — зуд ҷавоб медиҳем.</span>
+                <span aria-hidden="true">24/7</span>
+              </div>
+              <button class="btn btn-primary" type="button" id="stickyWhatsApp">
+                Фармоиш дар WhatsApp
+              </button>
+            </div>
+          </div>
+        </main>
+
+        <footer>
+          <div style="display: grid; gap: 12px; padding: 20px 16px;">
+            <div style="text-align: center; font-size: 14px; font-weight: 600; margin-bottom: 8px;">Магозаи мо</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; color: var(--muted-2);">
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px; color: var(--muted);">Тамос</div>
+                <div>WhatsApp: +7 9397439965</div>
+                <div>Телефон: +992 800064064</div>
+              </div>
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px; color: var(--muted);">Вақти кор</div>
+                <div>09:00 – 22:00</div>
+                <div>Ҳар рӯз</div>
+              </div>
+            </div>
+            <div style="text-align: center; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted-2);">
+              © Магозаи мо. Хамаи хукукхо махфузанд
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Admin Password Modal -->
+    <div class="admin-password-modal" id="adminPasswordModal">
+      <div class="admin-password-box">
+        <h3>Вуруди админ</h3>
+        <input type="password" id="adminPasswordInput" placeholder="Рамзро ворид кунед" autocomplete="off" />
+        <div class="admin-password-error" id="adminPasswordError">Рамз нодуруст аст!</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <button class="btn btn-secondary" type="button" id="adminPasswordCancel">Бекор кардан</button>
+          <button class="btn btn-primary" type="button" id="adminPasswordSubmit">Вуруд</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="product-modal-overlay" id="productModalOverlay">
+      <div class="product-modal" id="productModal">
+        <button class="product-modal-close" type="button" id="productModalClose" aria-label="Пӯшидани модал">✕</button>
+        <div class="product-modal-content" id="productModalContent">
+          <div class="product-modal-image-wrapper">
+            <img id="productModalImage" src="" alt="" />
+          </div>
+          <div class="product-modal-info">
+            <div class="product-modal-title">
+              <h2 id="productModalTitle"></h2>
+              <p id="productModalDescription"></p>
+            </div>
+            <div class="product-modal-price" id="productModalPrice"></div>
+            <div class="product-modal-actions">
+              <button class="btn btn-primary order-btn" type="button" id="productModalOrderBtn">Заказать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // =========================================================
+      // WhatsApp order + Navigation (no libraries)
+      // - Opens WhatsApp with prefilled message
+      // - Mobile nav with burger, outside-click close, smooth scroll
+      // =========================================================
+
+      (function () {
+        // +7 9397439965 — WhatsApp для товаров
+        const WHATSAPP_NUMBER = "79397439965";
+
+        function buildOrderMessage(productTitle, productPrice, customMessage) {
+          // If custom message exists, use it; otherwise use default template
+          if (customMessage) {
+            return (
+              customMessage + "\n" +
+              "Нарх: " + productPrice + "\n" +
+              "Лутфан маълумоти бештар дихед."
+            );
+          }
+          return (
+            "Салом! Ман мехохам фармоиш дихам.\n" +
+            "Махсулот: " + productTitle + "\n" +
+            "Нарх: " + productPrice + "\n" +
+            "Лутфан маълумоти бештар дихед."
+          );
+        }
+
+        function openWhatsAppWithText(text) {
+          const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+          // Use _blank for smoother behavior inside Instagram in-app browser
+          window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        function smoothScrollToId(id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function scrollToProducts() {
+          smoothScrollToId("products");
+        }
+
+        // Product Modal
+        const modalOverlay = document.getElementById("productModalOverlay");
+        const modal = document.getElementById("productModal");
+        const modalClose = document.getElementById("productModalClose");
+        const modalImage = document.getElementById("productModalImage");
+        const modalTitle = document.getElementById("productModalTitle");
+        const modalDescription = document.getElementById("productModalDescription");
+        const modalPrice = document.getElementById("productModalPrice");
+        const modalOrderBtn = document.getElementById("productModalOrderBtn");
+
+        let currentProductCard = null;
+
+        function openProductModal(card) {
+          if (!card || !modalOverlay || !modal) return;
+
+          currentProductCard = card;
+
+          const img = card.querySelector(".card-media img");
+          const titleEl = card.querySelector(".card-title h3");
+          const descEl = card.querySelector(".card-title p");
+          const priceEl = card.querySelector(".price");
+
+          if (img) {
+            modalImage.src = img.src;
+            modalImage.alt = img.alt || "";
+          }
+
+          if (titleEl) {
+            modalTitle.textContent = titleEl.textContent || "";
+          }
+
+          if (descEl) {
+            modalDescription.textContent = descEl.textContent || "";
+          }
+
+          if (priceEl) {
+            modalPrice.innerHTML = priceEl.innerHTML || "";
+          }
+
+          modalOverlay.classList.add("show");
+          document.body.classList.add("modal-open");
+        }
+
+        function closeProductModal() {
+          if (!modalOverlay) return;
+          modalOverlay.classList.remove("show");
+          document.body.classList.remove("modal-open");
+          currentProductCard = null;
+        }
+
+        if (modalClose) {
+          modalClose.addEventListener("click", closeProductModal);
+        }
+
+        if (modalOverlay) {
+          modalOverlay.addEventListener("click", function (e) {
+            if (e.target === modalOverlay) {
+              closeProductModal();
+            }
+          });
+        }
+
+        // Product image click handler
+        const grid = document.getElementById("productsGrid");
+        if (grid) {
+          grid.addEventListener("click", function (e) {
+            const target = e.target;
+            if (!(target instanceof HTMLElement)) return;
+
+            // If clicked on image or card-media, open modal
+            if (target.tagName === "IMG" || target.classList.contains("card-media")) {
+              const card = target.closest(".card");
+              if (card instanceof HTMLElement) {
+                e.preventDefault();
+                openProductModal(card);
+                return;
+              }
+            }
+
+            // If clicked on order button
+            if (target.classList.contains("order-btn")) {
+              const card = target.closest(".card");
+              if (!(card instanceof HTMLElement)) return;
+
+              const title = card.getAttribute("data-title") || "Махсулот";
+              const price = card.getAttribute("data-price") || "—";
+              const customMessage = card.getAttribute("data-message") || null;
+
+              const message = buildOrderMessage(title, price, customMessage);
+              openWhatsAppWithText(message);
+            }
+          });
+        }
+
+        // Modal order button
+        if (modalOrderBtn) {
+          modalOrderBtn.addEventListener("click", function () {
+            if (!currentProductCard) return;
+
+            const title = currentProductCard.getAttribute("data-title") || "Махсулот";
+            const price = currentProductCard.getAttribute("data-price") || "—";
+            const customMessage = currentProductCard.getAttribute("data-message") || null;
+
+            const message = buildOrderMessage(title, price, customMessage);
+            openWhatsAppWithText(message);
+            closeProductModal();
+          });
+        }
+
+        // Close modal on Escape key
+        window.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modalOverlay?.classList.contains("show")) {
+            closeProductModal();
+          }
+        });
+
+        // Generic WhatsApp buttons
+        const callToWhatsApp = document.getElementById("callToWhatsApp");
+        if (callToWhatsApp) {
+          callToWhatsApp.addEventListener("click", function () {
+            // If user hasn't chosen a product, guide them to product section
+            scrollToProducts();
+          });
+        }
+
+        const stickyWhatsApp = document.getElementById("stickyWhatsApp");
+        if (stickyWhatsApp) {
+          stickyWhatsApp.addEventListener("click", function () {
+            const message =
+              "Салом! Ман мехохам фармоиш дихам.\n" +
+              "Лутфан руйхати махсулотхо ва нарххоро фиристед.";
+            openWhatsAppWithText(message);
+          });
+        }
+
+        const contactWhatsApp = document.getElementById("contactWhatsApp");
+        if (contactWhatsApp) {
+          contactWhatsApp.addEventListener("click", function () {
+            const message =
+              "Салом! Ман мехохам фармоиш дихам.\n" +
+              "Лутфан маълумоти бештар дар бораи махсулоти варзишӣ дихед.";
+            openWhatsAppWithText(message);
+          });
+        }
+
+        // Navigation (burger drawer)
+        const burger = document.getElementById("burgerToggle");
+        const nav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("navOverlay");
+        const navClose = document.getElementById("navClose");
+        const navLinks = Array.from(document.querySelectorAll("[data-nav-target]"));
+
+        function openNav() {
+          if (!nav || !overlay || !burger) return;
+          nav.classList.add("open");
+          overlay.classList.add("show");
+          burger.classList.add("is-open");
+          document.body.classList.add("nav-open");
+        }
+
+        function closeNav() {
+          if (!nav || !overlay || !burger) return;
+          nav.classList.remove("open");
+          overlay.classList.remove("show");
+          burger.classList.remove("is-open");
+          document.body.classList.remove("nav-open");
+        }
+
+        if (burger) {
+          burger.addEventListener("click", function () {
+            if (nav?.classList.contains("open")) {
+              closeNav();
+            } else {
+              openNav();
+            }
+          });
+        }
+
+        if (navClose) {
+          navClose.addEventListener("click", closeNav);
+        }
+
+        if (overlay) {
+          overlay.addEventListener("click", closeNav);
+        }
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            const targetId = link.getAttribute("data-nav-target");
+            if (targetId) {
+              e.preventDefault();
+              smoothScrollToId(targetId);
+            }
+            closeNav();
+          });
+        });
+
+        window.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            if (modalOverlay?.classList.contains("show")) {
+              closeProductModal();
+            } else if (adminPasswordModal?.classList.contains("show")) {
+              closeAdminPasswordModal();
+            } else {
+              closeNav();
+            }
+          }
+        });
+
+        // =========================================================
+        // Admin Panel Functionality
+        // - Hidden admin button opens password modal
+        // - Password: yodovar22 (changeable in ADMIN_PASSWORD constant)
+        // - Admin section allows adding products with image, description, price
+        // - New products are added dynamically to DOM
+        // =========================================================
+
+        const ADMIN_PASSWORD = "yodovar22"; // Change this to your desired password
+
+        // Admin elements
+        const adminBtn = document.getElementById("adminBtn");
+        const adminPasswordModal = document.getElementById("adminPasswordModal");
+        const adminPasswordInput = document.getElementById("adminPasswordInput");
+        const adminPasswordError = document.getElementById("adminPasswordError");
+        const adminPasswordSubmit = document.getElementById("adminPasswordSubmit");
+        const adminPasswordCancel = document.getElementById("adminPasswordCancel");
+        const adminSection = document.getElementById("adminSection");
+        const adminImageInput = document.getElementById("adminImage");
+        const adminImagePreview = document.getElementById("adminImagePreview");
+        const adminTitleInput = document.getElementById("adminTitle");
+        const adminDescriptionInput = document.getElementById("adminDescription");
+        const adminPriceInput = document.getElementById("adminPrice");
+        const adminAddBtn = document.getElementById("adminAddBtn");
+        const adminCancelBtn = document.getElementById("adminCancelBtn");
+        const productsGrid = document.getElementById("productsGrid");
+
+        // Open admin password modal
+        function openAdminPasswordModal() {
+          if (!adminPasswordModal) return;
+          adminPasswordModal.classList.add("show");
+          document.body.classList.add("modal-open");
+          adminPasswordInput.focus();
+        }
+
+        // Close admin password modal
+        function closeAdminPasswordModal() {
+          if (!adminPasswordModal) return;
+          adminPasswordModal.classList.remove("show");
+          document.body.classList.remove("modal-open");
+          adminPasswordInput.value = "";
+          adminPasswordError.classList.remove("show");
+        }
+
+        // Show admin section
+        function showAdminSection() {
+          if (!adminSection) return;
+          adminSection.classList.add("show");
+          renderProductsFromStorage(); // Re-render with admin controls
+          smoothScrollToId("adminSection");
+        }
+
+        // Hide admin section
+        function hideAdminSection() {
+          if (!adminSection) return;
+          adminSection.classList.remove("show");
+        }
+
+        // Admin button click handler
+        if (adminBtn) {
+          adminBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            openAdminPasswordModal();
+          });
+        }
+
+        // Admin password submit
+        if (adminPasswordSubmit) {
+          adminPasswordSubmit.addEventListener("click", function () {
+            const password = adminPasswordInput.value.trim();
+            if (password === ADMIN_PASSWORD) {
+              closeAdminPasswordModal();
+              showAdminSection();
+            } else {
+              adminPasswordError.classList.add("show");
+              adminPasswordInput.value = "";
+              setTimeout(function () {
+                adminPasswordError.classList.remove("show");
+              }, 3000);
+            }
+          });
+        }
+
+        // Admin password cancel
+        if (adminPasswordCancel) {
+          adminPasswordCancel.addEventListener("click", closeAdminPasswordModal);
+        }
+
+        // Close admin password modal on overlay click
+        if (adminPasswordModal) {
+          adminPasswordModal.addEventListener("click", function (e) {
+            if (e.target === adminPasswordModal) {
+              closeAdminPasswordModal();
+            }
+          });
+        }
+
+        // Admin password input Enter key
+        if (adminPasswordInput) {
+          adminPasswordInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+              adminPasswordSubmit.click();
+            }
+          });
+        }
+
+        // Image preview handler
+        if (adminImageInput) {
+          adminImageInput.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith("image/")) {
+              const reader = new FileReader();
+              reader.onload = function (event) {
+                adminImagePreview.src = event.target.result;
+                adminImagePreview.classList.add("show");
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+        }
+
+        // =========================================================
+        // LocalStorage Product Management
+        // - All products saved to LocalStorage
+        // - Products restored on page load
+        // - Edit/Delete functionality
+        // =========================================================
+
+        const STORAGE_KEY = "yodovar_products";
+
+        // Get all products from LocalStorage
+        function getProductsFromStorage() {
+          try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+          } catch (e) {
+            console.error("Error reading from LocalStorage:", e);
+            return [];
+          }
+        }
+
+        // Save products to LocalStorage
+        function saveProductsToStorage(products) {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+            return true;
+          } catch (e) {
+            console.error("Error saving to LocalStorage:", e);
+            alert("Хатогӣ дар захира кардани махсулотҳо!");
+            return false;
+          }
+        }
+
+        // Generate unique ID for product
+        function generateProductId() {
+          return "product_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Create product card HTML
+        function createProductCard(product, isAdminMode = false) {
+          const card = document.createElement("article");
+          card.className = "card";
+          card.setAttribute("data-product-id", product.id);
+          card.setAttribute("data-title", product.title);
+          card.setAttribute("data-price", product.price + " сомонӣ");
+          card.setAttribute("data-message", product.message || "Салом! Ман мехоҳам ин " + product.title.toLowerCase() + "ро фармоиш диҳам.");
+
+          const adminControls = isAdminMode ? `
+            <div class="product-admin-controls">
+              <button class="btn btn-secondary admin-edit-btn" type="button" data-product-id="${product.id}">Тағйир додан</button>
+              <button class="btn btn-secondary admin-delete-btn" type="button" data-product-id="${product.id}">Нест кардан</button>
+            </div>
+          ` : "";
+
+          card.innerHTML = `
+            <div class="card-media">
+              <img src="${product.imageSrc}" alt="${product.title}" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <div class="card-title">
+                <h3>${product.title}</h3>
+                <p>${product.description}</p>
+              </div>
+              <div class="card-meta">
+                <div class="price">
+                  ${product.price} <small>сомонӣ</small>
+                </div>
+              </div>
+              ${adminControls}
+              <button class="btn btn-primary order-btn" type="button">Заказать</button>
+            </div>
+          `;
+
+          return card;
+        }
+
+        // Render all products from storage
+        function renderProductsFromStorage() {
+          if (!productsGrid) return;
+
+          const products = getProductsFromStorage();
+          // Check if admin section is visible to show edit/delete buttons
+          const isAdminMode = adminSection && adminSection.classList.contains("show");
+
+          // Remove all existing cards (both static and dynamic)
+          // We'll render everything from LocalStorage
+          const allCards = productsGrid.querySelectorAll(".card");
+          allCards.forEach(card => card.remove());
+
+          // Add products from storage
+          if (products.length > 0) {
+            products.forEach(product => {
+              const card = createProductCard(product, isAdminMode);
+              productsGrid.appendChild(card);
+            });
+          } else {
+            // If no products in storage, show message or keep existing HTML products
+            // This shouldn't happen after first load, but just in case
+          }
+        }
+
+        // Add product to storage and render
+        function addProductToStorage(imageSrc, title, description, price) {
+          const products = getProductsFromStorage();
+          const newProduct = {
+            id: generateProductId(),
+            imageSrc: imageSrc,
+            title: title,
+            description: description,
+            price: parseInt(price),
+            message: "Салом! Ман мехоҳам ин " + title.toLowerCase() + "ро фармоиш диҳам."
+          };
+
+          products.push(newProduct);
+          if (saveProductsToStorage(products)) {
+            renderProductsFromStorage();
+            return newProduct;
+          }
+          return null;
+        }
+
+        // Update product in storage
+        function updateProductInStorage(productId, imageSrc, title, description, price) {
+          const products = getProductsFromStorage();
+          const index = products.findIndex(p => p.id === productId);
+          
+          if (index !== -1) {
+            products[index] = {
+              ...products[index],
+              imageSrc: imageSrc || products[index].imageSrc,
+              title: title || products[index].title,
+              description: description || products[index].description,
+              price: price ? parseInt(price) : products[index].price,
+              message: "Салом! Ман мехоҳам ин " + (title || products[index].title).toLowerCase() + "ро фармоиш диҳам."
+            };
+            
+            if (saveProductsToStorage(products)) {
+              renderProductsFromStorage();
+              return true;
+            }
+          }
+          return false;
+        }
+
+        // Delete product from storage
+        function deleteProductFromStorage(productId) {
+          const products = getProductsFromStorage();
+          const filtered = products.filter(p => p.id !== productId);
+          
+          if (saveProductsToStorage(filtered)) {
+            renderProductsFromStorage();
+            return true;
+          }
+          return false;
+        }
+
+        // Add product function (wrapper for compatibility)
+        function addProductToGrid(imageSrc, title, description, price) {
+          const product = addProductToStorage(imageSrc, title, description, price);
+          if (product) {
+            // Scroll to new product
+            const newCard = productsGrid.querySelector(`[data-product-id="${product.id}"]`);
+            if (newCard) {
+              newCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          }
+        }
+
+        // Edit product mode
+        let editingProductId = null;
+
+        function startEditProduct(productId) {
+          const products = getProductsFromStorage();
+          const product = products.find(p => p.id === productId);
+          
+          if (!product) return;
+
+          editingProductId = productId;
+          adminTitleInput.value = product.title;
+          adminDescriptionInput.value = product.description;
+          adminPriceInput.value = product.price;
+          adminImagePreview.src = product.imageSrc;
+          adminImagePreview.classList.add("show");
+          
+          adminAddBtn.textContent = "Тағйир додан";
+          const formTitle = document.getElementById("adminFormTitle");
+          if (formTitle) {
+            formTitle.textContent = "Тағйир додани махсулот";
+          }
+          smoothScrollToId("adminSection");
+        }
+
+        function cancelEdit() {
+          editingProductId = null;
+          adminAddBtn.textContent = "Илова кардан";
+          const formTitle = document.getElementById("adminFormTitle");
+          if (formTitle) {
+            formTitle.textContent = "Илова кардани махсулоти нав";
+          }
+          adminTitleInput.value = "";
+          adminDescriptionInput.value = "";
+          adminPriceInput.value = "";
+          adminImageInput.value = "";
+          adminImagePreview.src = "";
+          adminImagePreview.classList.remove("show");
+        }
+
+        // Admin add/edit product button
+        if (adminAddBtn) {
+          adminAddBtn.addEventListener("click", function () {
+            const title = adminTitleInput.value.trim();
+            const description = adminDescriptionInput.value.trim();
+            const price = adminPriceInput.value.trim();
+            const imageFile = adminImageInput.files[0];
+
+            // Validation
+            if (!title || !description || !price) {
+              alert("Лутфан ҳамаи майдонҳоро пур кунед!");
+              return;
+            }
+
+            if (isNaN(price) || parseInt(price) < 1) {
+              alert("Лутфан нархи дурустро ворид кунед!");
+              return;
+            }
+
+            // If editing
+            if (editingProductId) {
+              if (imageFile) {
+                // New image provided
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                  const imageSrc = event.target.result;
+                  if (updateProductInStorage(editingProductId, imageSrc, title, description, price)) {
+                    alert("Махсулот бомуваффақият тағйир дода шуд!");
+                    cancelEdit();
+                    // Re-render to show updated product
+                    renderProductsFromStorage();
+                  }
+                };
+                reader.readAsDataURL(imageFile);
+              } else {
+                // No new image, keep existing - just update text fields
+                if (updateProductInStorage(editingProductId, null, title, description, price)) {
+                  alert("Махсулот бомуваффақият тағйир дода шуд!");
+                  cancelEdit();
+                  // Re-render to show updated product
+                  renderProductsFromStorage();
+                }
+              }
+            } else {
+              // Adding new product
+              if (!imageFile) {
+                alert("Лутфан фотои махсулотро интихоб кунед!");
+                return;
+              }
+
+              const reader = new FileReader();
+              reader.onload = function (event) {
+                const imageSrc = event.target.result;
+                if (addProductToStorage(imageSrc, title, description, parseInt(price))) {
+                  alert("Махсулот бомуваффақият илова карда шуд!");
+                  cancelEdit();
+                }
+              };
+              reader.readAsDataURL(imageFile);
+            }
+          });
+        }
+
+        // Admin cancel button
+        if (adminCancelBtn) {
+          adminCancelBtn.addEventListener("click", cancelEdit);
+        }
+
+        // Handle edit/delete buttons (delegated event listener)
+        if (productsGrid) {
+          productsGrid.addEventListener("click", function (e) {
+            const target = e.target;
+            
+            // Edit button
+            if (target.classList.contains("admin-edit-btn")) {
+              const productId = target.getAttribute("data-product-id");
+              if (productId) {
+                startEditProduct(productId);
+              }
+            }
+            
+            // Delete button
+            if (target.classList.contains("admin-delete-btn")) {
+              const productId = target.getAttribute("data-product-id");
+              if (productId) {
+                if (confirm("Шумо мутмаин ҳастед, ки мехоҳед ин махсулотро нест кунед?")) {
+                  if (deleteProductFromStorage(productId)) {
+                    alert("Махсулот бомуваффақият нест карда шуд!");
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // Save existing HTML products to LocalStorage on first load
+        function saveExistingProductsToStorage() {
+          const existingProducts = getProductsFromStorage();
+          
+          // If storage is empty OR has less than 21 products, save all HTML products
+          // This ensures all 21 products are saved even if storage was partially filled
+          if (productsGrid) {
+            const existingCards = productsGrid.querySelectorAll(".card");
+            
+            // Only update if storage is empty or has fewer products than in HTML
+            if (existingProducts.length === 0 || existingProducts.length < existingCards.length) {
+              const products = [];
+              
+              existingCards.forEach((card) => {
+                const titleEl = card.querySelector(".card-title h3");
+                const descEl = card.querySelector(".card-title p");
+                const priceEl = card.querySelector(".price");
+                const imgEl = card.querySelector(".card-media img");
+                
+                if (titleEl && descEl && priceEl && imgEl) {
+                  const title = titleEl.textContent.trim();
+                  const description = descEl.textContent.trim();
+                  const priceText = priceEl.textContent.trim();
+                  const price = parseInt(priceText.replace(/\D/g, "")) || 0;
+                  const imageSrc = imgEl.src;
+                  const dataMessage = card.getAttribute("data-message");
+                  
+                  // Save all products (both file-based and base64)
+                  if (imageSrc && title && description && price > 0) {
+                    products.push({
+                      id: generateProductId(),
+                      imageSrc: imageSrc,
+                      title: title,
+                      description: description,
+                      price: price,
+                      message: dataMessage || "Салом! Ман мехоҳам ин " + title.toLowerCase() + "ро фармоиш диҳам."
+                    });
+                  }
+                }
+              });
+              
+              if (products.length > 0) {
+                console.log("Saving " + products.length + " products to LocalStorage");
+                saveProductsToStorage(products);
+              }
+            }
+          }
+        }
+
+        // Load products from storage on page load
+        function initializeProducts() {
+          saveExistingProductsToStorage(); // Save existing HTML products if storage is empty
+          renderProductsFromStorage(); // Render all products from storage
+        }
+
+        // Initialize on page load
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initializeProducts);
+        } else {
+          initializeProducts();
+        }
+
+        // =========================================================
+        // Stats Counter Animation
+        // =========================================================
+        function animateCounter(element, target, duration = 2000) {
+          const start = 0;
+          const increment = target / (duration / 16);
+          let current = start;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              element.textContent = target;
+              clearInterval(timer);
+            } else {
+              element.textContent = Math.floor(current);
+            }
+          }, 16);
+        }
+
+        function initStatsAnimation() {
+          const statsSection = document.getElementById("stats");
+          if (!statsSection) return;
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll(".stat-number");
+                statNumbers.forEach(stat => {
+                  const target = parseInt(stat.getAttribute("data-target"));
+                  if (target && stat.textContent === "0") {
+                    animateCounter(stat, target);
+                  }
+                });
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+
+          observer.observe(statsSection);
+        }
+
+        // Initialize stats animation
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initStatsAnimation);
+        } else {
+          initStatsAnimation();
+        }
+
+        // =========================================================
+        // FAQ Accordion
+        // =========================================================
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach(item => {
+          const question = item.querySelector(".faq-question");
+          if (question) {
+            question.addEventListener("click", function () {
+              const isActive = item.classList.contains("active");
+              
+              // Close all FAQ items
+              faqItems.forEach(faq => faq.classList.remove("active"));
+              
+              // Open clicked item if it wasn't active
+              if (!isActive) {
+                item.classList.add("active");
+              }
+            });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+
